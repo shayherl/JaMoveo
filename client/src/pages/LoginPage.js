@@ -33,9 +33,10 @@ export default function LoginPage(){
     return(
         <form onSubmit={handleSubmit}>
             <h1> Login </h1>
-            <input name='username' placeholder='username' onChange={handleChange} required />
-            <input type='password' name='password' placeholder='password' onChange={handleChange} required />
-            <button type="submit"> Login </button>
+            <input className="input" name='username' placeholder='username' onChange={handleChange} required />
+            <input className="input" type='password' name='password' placeholder='password' onChange={handleChange} required />
+            <br/>
+            <button className="btn" type="submit"> Login </button>
             <p> Don't have an account? <Link to="/signup">Sign up here</Link></p>
         </form>
     )

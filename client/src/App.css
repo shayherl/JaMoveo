@@ -21,3 +21,84 @@
 .App-link {
   color: #61dafb;
 }
+
+
+.btn {
+  padding: 6px 12px;
+  background-color: #A45752;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+  background-color: #6e3b37;
+}
+
+.input {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #2A2E37;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+a {
+  color: #2A2E37;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #007bff;
+}
+
+.song-result {
+  color: black;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+}
+
+.song-result:hover {
+  color: #A45752;
+}
+.alert {
+  padding: 12px 16px;
+  margin: 10px auto;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  transition: opacity 0.3s ease;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: #798eb8;
+  color:#ffffff;
+}

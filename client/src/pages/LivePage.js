@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LyricsOnly from '../components/LyricsOnly';
-import SongWithChords from '../components/SongWithChords';
+// import LyricsOnly from '../components/LyricsOnly';
+// import SongWithChords from '../components/SongWithChords';
 import socket from "../socket";
+import '../App.css';
 
 export default function LivePage(){
     const [song, setSong] = useState(() => {
@@ -55,14 +56,54 @@ export default function LivePage(){
 
     return(
         <div>
-            <h1>{song.title} by {song.artist}</h1>
-            {isSinger ? <LyricsOnly content={song.content} /> : <SongWithChords content={song.content} />}
-            <button onClick={() => setAutoScroll(!autoScroll)}>
+            <h2>{song.title} by {song.artist}</h2>
+            {song.lines.map((line, idx) => (
+            <div
+                key={idx}
+                style={{
+                direction: 'rtl',
+                textAlign: 'center', // יישור למרכז
+                fontFamily: 'monospace',
+                marginBottom: '0.5em',
+                }}
+            >
+                {!isSinger && (
+                <div
+                    dir="ltr"
+                    style={{
+                    whiteSpace: 'pre',
+                    fontFamily: 'inherit',
+                    textAlign: 'center', // גם לאקורדים
+                    }}
+                    dangerouslySetInnerHTML={{ __html: line.chordsHtml }}
+                />
+                )}
+                <div
+                dir="rtl"
+                style={{
+                    whiteSpace: 'pre',
+                    fontFamily: 'inherit',
+                    textAlign: 'center', // גם לשורת המילים
+                }}
+                >
+                {line.lyrics}
+                </div>
+            </div>
+            ))}
+
+
+            {/* {isSinger ? <LyricsOnly content={song.content} /> : <SongWithChords content={song.content} />} */}
+            <button  className="btn" onClick={() => setAutoScroll(!autoScroll)} style={{
+                position: 'fixed',
+                bottom: '20px',
+                left: '20px',
+                zIndex: 1000,
+            }}>
                 {autoScroll ? 'Stop scrolling' : 'Start scrolling'}
             </button>
 
             {user.role === 'admin' && (
-                <button onClick={handleQuit}>Quit</button>
+                <button className="btn" onClick={handleQuit}>Quit</button>
             )}
         </div>
     )

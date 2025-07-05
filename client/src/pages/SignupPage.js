@@ -26,10 +26,11 @@ export default function SignupPage(){
     return(
         <form onSubmit={handleSubmit}>
             <h1> {isAdmin ? 'Admin Register' : 'Register'}</h1>
-            <input name='username' placeholder='username' onChange={handleChange} required />
-            <input type='password' name='password' placeholder='password' onChange={handleChange} required />
-            <input name='instrument' placeholder='instrument' onChange={handleChange} required />
-            <button type="submit"> {isAdmin ? 'Create admin' : 'Create user'}</button>
+            <input className="input" name='username' placeholder='username' onChange={handleChange} required />
+            <input className="input" type='password' name='password' placeholder='password' onChange={handleChange} required />
+            <input className="input" name='instrument' placeholder='instrument' onChange={handleChange} required />
+            <br/>
+            <button className="btn" type="submit"> {isAdmin ? 'Create admin' : 'Create user'}</button>
             <p>Already have an account? <Link to="/login">Log in here</Link></p>
         </form>
     )

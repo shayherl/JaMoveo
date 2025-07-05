@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import socket from '../socket';
 
 export default function PlayerPage(){
     const navigate = useNavigate();
+    const [dots, setDots] = useState('.');
 
     useEffect(() => {
         const handleSong = (songData) => {
@@ -24,7 +25,18 @@ export default function PlayerPage(){
         };
     }, [navigate]);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setDots(prev => {
+                if (prev.length === 3) return '.';
+                return prev + '.';
+            });
+        }, 500);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return(
-        <h2>Waiting for next song</h2>
+        <h2>Waiting for next song{dots}</h2>
     )
 }

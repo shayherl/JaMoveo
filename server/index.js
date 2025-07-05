@@ -15,6 +15,8 @@ const io = new Server(server, { cors: {
 app.use(cors());
 app.use(express.json());
 app.use('/api', require('./routes/auth'));
+const tab4uRoutes = require('./routes/Tab4U');
+app.use('/api/tab4u', tab4uRoutes);
 
 // mongoDB connection
 mongoose.connect('mongodb://127.0.0.1:27017/jamoveo', {

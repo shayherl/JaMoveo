@@ -2,18 +2,6 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { searchSongs } from '../socket';
 
-// const songs = [
-// {
-//     title: 'Hey Jude',
-//     artist: 'The Beatles',
-//     file: 'hey_jude.json'
-// },
-// {
-//     title: 'ואיך שלא',
-//     artist: 'אריאל זילבר',
-//     file: 'veech_shelo.json'
-// }]
-
 export default function AdminPage(){
     const navigate = useNavigate();
     const [query, setQuery] = useState('');

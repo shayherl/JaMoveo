@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import LyricsOnly from '../components/LyricsOnly';
-// import SongWithChords from '../components/SongWithChords';
 import socket from "../socket";
 import '../App.css';
 

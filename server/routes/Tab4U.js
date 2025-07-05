@@ -5,45 +5,6 @@ const router = express.Router();
 
 const BASE_URL = 'https://www.tab4u.com';
 
-function buildAlignedChordHtml(rawHtml, lyricsLine) {
-  if (!rawHtml || typeof rawHtml !== 'string') return '';
-
-  const parts = rawHtml
-    .split(/<\/?span[^>]*>/)        // מפרק את הספאנים של Tab4U
-    .filter(p => p !== '')
-    .map(p => p.replace(/&nbsp;/g, ' ')); // ממיר רווחים לאות רגילה
-
-  const result = [];
-  let index = 0;
-
-  for (const part of parts) {
-    const leadingSpaces = part.match(/^ */)?.[0].length || 0;
-    const chord = part.trim();
-
-    const position = index + leadingSpaces;
-
-    // רווחים עד למיקום האקורד
-    while (result.length < position) {
-      result.push('<span style="display:inline-block; width:1ch;"> </span>');
-    }
-
-    // האקורד עצמו, עם רוחב קבוע
-    result.push(`<span style="display:inline-block; width:${chord.length}ch; font-weight:bold; color:blue;">${chord}</span>`);
-
-    index = result.length;
-  }
-
-  // השלמה לרוחב שורת המילים
-  while (result.length < lyricsLine.length) {
-    result.push('<span style="display:inline-block; width:1ch;"> </span>');
-  }
-
-  return result.join('');
-}
-
-
-
-
 router.get('/search', async (req, res) => {
   const query = req.query.q;
 
@@ -109,9 +70,9 @@ router.get('/song', async (req, res) => {
 
 function extractChordsAndSpaces(html) {
   return html
-    .replace(/<span[^>]*>(.*?)<\/span>/g, '$1') // משאיר רק את תוכן האקורד
-    .replace(/<\/?[^>]+>/g, '')                 // מוחק שאר תגיות HTML
-    .replace(/[\n\r\t]/g, '')                   // מוחק תווי עזר
+    .replace(/<span[^>]*>(.*?)<\/span>/g, '$1')
+    .replace(/<\/?[^>]+>/g, '')
+    .replace(/[\n\r\t]/g, '')
     .trim();
 }
 

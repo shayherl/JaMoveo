@@ -57,42 +57,18 @@ export default function LivePage(){
     return(
         <div>
             <h2>{song.title} by {song.artist}</h2>
-            {song.lines.map((line, idx) => (
-            <div
-                key={idx}
-                style={{
-                direction: 'rtl',
-                textAlign: 'center', // יישור למרכז
-                fontFamily: 'monospace',
-                marginBottom: '0.5em',
-                }}
-            >
-                {!isSinger && (
-                <div
-                    dir="ltr"
-                    style={{
-                    whiteSpace: 'pre',
-                    fontFamily: 'inherit',
-                    textAlign: 'center', // גם לאקורדים
-                    }}
-                    dangerouslySetInnerHTML={{ __html: line.chordsHtml }}
-                />
-                )}
-                <div
-                dir="rtl"
-                style={{
-                    whiteSpace: 'pre',
-                    fontFamily: 'inherit',
-                    textAlign: 'center', // גם לשורת המילים
-                }}
-                >
-                {line.lyrics}
+            {song.lines.map((line, i) => {
+                if (!line.lyrics && !line.chords) return null;
+                return (
+                <div key={i} >
+                    {!isSinger && <pre
+                    dangerouslySetInnerHTML={{ __html: line.chords }}
+                    />}
+                    <pre
+                    dangerouslySetInnerHTML={{ __html: line.lyrics }}
+                    />
                 </div>
-            </div>
-            ))}
-
-
-            {/* {isSinger ? <LyricsOnly content={song.content} /> : <SongWithChords content={song.content} />} */}
+            )})}
             <button  className="btn" onClick={() => setAutoScroll(!autoScroll)} style={{
                 position: 'fixed',
                 bottom: '20px',

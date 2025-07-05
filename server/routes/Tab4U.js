@@ -89,20 +89,11 @@ router.get('/song', async (req, res) => {
     const lines = [];
 
     $('#songContentTPL table tbody tr').each((_, tr) => {
-    const songLine = $(tr).find('td.song').text().replace(/\u00a0/g, ' ');
-    const chordsHtml = $(tr).find('td.chords, td.chords_en').html(); // זה מחזיר את הספאן של Tab4U
-
-    if (songLine || chordsHtml) {
-        let alignedChords = '';
-        try {
-        alignedChords = buildAlignedChordHtml(chordsHtml, songLine);
-        
-        } catch (err) {
-        console.error('Failed to align chords:', err.message);
-        }
-        const cleanLyrics = songLine.replace(/[\n\r\t]/g, '').trim();
-        lines.push({ lyrics: cleanLyrics, chordsHtml: alignedChords });
-    }
+      const songLine = $(tr).find('td.song').html() || '';
+      const chordsHtml = $(tr).find('td.chords, td.chords_en').html() || '';
+      const cleanedChords = extractChordsAndSpaces(chordsHtml);
+      const cleanedSong = songLine.replace(/[\n\t\r]/g, '');
+      lines.push({ lyrics: cleanedSong, chords: cleanedChords });
     });
 
     const fullTitle = $('font.blackNone').text().split('לשיר')[1]?.trim() || '';
@@ -116,8 +107,12 @@ router.get('/song', async (req, res) => {
   }
 });
 
-
-
-
+function extractChordsAndSpaces(html) {
+  return html
+    .replace(/<span[^>]*>(.*?)<\/span>/g, '$1') // משאיר רק את תוכן האקורד
+    .replace(/<\/?[^>]+>/g, '')                 // מוחק שאר תגיות HTML
+    .replace(/[\n\r\t]/g, '')                   // מוחק תווי עזר
+    .trim();
+}
 
 module.exports = router;

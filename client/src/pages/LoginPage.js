@@ -12,12 +12,12 @@ export default function LoginPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const endpoint = 'http://localhost:5000/api/login';
+        const endpoint = `${import.meta.env.VITE_API_BASE_URL}/api/login`;
         try {
             const res = await axios.post(endpoint, formData);
             const {token, user} = res.data;
-            localStorage.setItem('token', token);
-            localStorage.setItem('user', JSON.stringify(user));
+            sessionStorage.setItem('token', token);
+            sessionStorage.setItem('user', JSON.stringify(user));
             if (user.role === 'admin'){
                 navigate('/admin');
             }

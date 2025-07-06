@@ -8,12 +8,12 @@ export default function PlayerPage(){
 
     useEffect(() => {
         const handleSong = (songData) => {
-            localStorage.setItem('currentSong', JSON.stringify(songData));
+            sessionStorage.setItem('currentSong', JSON.stringify(songData));
             navigate('/live');
         };
 
         const handleQuit = () => {
-            localStorage.removeItem('currentSong');
+            sessionStorage.removeItem('currentSong');
         };
 
         socket.on('song-selected', handleSong);

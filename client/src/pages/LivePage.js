@@ -5,22 +5,22 @@ import '../App.css';
 
 export default function LivePage(){
     const [song, setSong] = useState(() => {
-        const stored = localStorage.getItem('currentSong');
+        const stored = sessionStorage.getItem('currentSong');
         return stored ? JSON.parse(stored) : null;
     });
     const [autoScroll, setAutoScroll] = useState(false);
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(sessionStorage.getItem('user'));
     const isSinger = user.instrument?.toLowerCase().includes('singer');
     const navigate = useNavigate();
 
     useEffect(() => {
         const handleSong = (newSong) => {
-            localStorage.setItem('currentSong', JSON.stringify(newSong));
+            sessionStorage.setItem('currentSong', JSON.stringify(newSong));
             setSong(newSong);
         };
 
         const handleQuit = () => {
-            localStorage.removeItem('currentSong');
+            sessionStorage.removeItem('currentSong');
             navigate(user.role === 'admin' ? '/admin' : '/player');
         }
 
@@ -59,10 +59,10 @@ export default function LivePage(){
                 if (!line.lyrics && !line.chords) return null;
                 return (
                 <div key={i} >
-                    {!isSinger && <pre
+                    {!isSinger && <pre style={{ fontSize: '18px', color: '#5d40ad' }}
                     dangerouslySetInnerHTML={{ __html: line.chords }}
                     />}
-                    <pre
+                    <pre style={{ fontSize: '18px' }}
                     dangerouslySetInnerHTML={{ __html: line.lyrics }}
                     />
                 </div>

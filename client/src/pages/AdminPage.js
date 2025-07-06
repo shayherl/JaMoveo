@@ -6,7 +6,6 @@ export default function AdminPage(){
     const navigate = useNavigate();
     const [query, setQuery] = useState('');
 
-
     const handleSearch = async (e) => {
         e.preventDefault();
         const res = await searchSongs(query);

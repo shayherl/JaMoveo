@@ -11,7 +11,7 @@ export default function ResultsPage(){
     const handleSelect = async (song) => {
         try{
             const data = await getSongDetails(song.link);
-            localStorage.setItem('currentSong', JSON.stringify(data));
+            sessionStorage.setItem('currentSong', JSON.stringify(data));
             socket.emit('selected-song', data);
             setMessage(`${song.title} selected and broadcasted to all players`);
             setTimeout(() => {
@@ -29,13 +29,19 @@ export default function ResultsPage(){
         <div>
             {message && (<div className="alert alert-success"> {message} </div>)}
             <h2>Search results:</h2>
-            <div>
-                {results.map(song => (
-                    <div key={song.title} className="song-result" onClick={() => handleSelect(song)} style={{ cursor: 'pointer' }}>
-                        {song.title} - {song.artist}
-                    </div>
-                ))}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', direction: 'rtl' }}>
+              {results.map(song => (
+                <div key={song.title} className="song-result" onClick={() => handleSelect(song)}>
+                  {song.photo && (
+                    <img src={song.photo} alt={song.artist}/>
+                  )}
+                  <span style={{ fontSize: '18px', fontWeight: '500' }}>
+                    {song.title} - {song.artist}
+                  </span>
+                </div>
+              ))}
             </div>
+
             <button className="btn" onClick={handleBackToAdmin} style={{marginTop: '20px', padding: '10px 15px', cursor: 'pointer'}}>
                 Back to search
             </button>

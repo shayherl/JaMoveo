@@ -5,6 +5,16 @@ const router = express.Router();
 
 const BASE_URL = 'https://www.tab4u.com';
 
+// help method for /song
+function extractChordsAndSpaces(html) {
+  return html
+    .replace(/<span[^>]*>(.*?)<\/span>/g, '$1')
+    .replace(/<\/?[^>]+>/g, '')
+    .replace(/[\n\r\t]/g, '')
+    .trim();
+}
+
+// search results
 router.get('/search', async (req, res) => {
   const query = req.query.q;
 
@@ -21,12 +31,18 @@ router.get('/search', async (req, res) => {
         const songLink = $el.find('a').attr('href');
         const artistName = $el.find('.aNameI19').text().trim().replace(/[ /]+$/, '');
         const songName = $el.find('.sNameI19').text().trim().replace(/[ /]+$/, '');
+        const photoSpan = $el.find('span.ruArtPhoto');
+        const styleAttr = photoSpan.attr('style') || '';
+        const match = styleAttr?.match(/url\(['"]?(.*?)['"]?\)/);
+        const artistImagePath = match ? match[1] : '';
+        const artistImage = artistImagePath ? new URL(artistImagePath, BASE_URL).href : null;
 
         if (songLink && songName && artistName) {
             results.push({
             title: songName,
             artist: artistName,
-            link: songLink
+            link: songLink,
+            photo: artistImage 
             });
         }
         });
@@ -38,6 +54,7 @@ router.get('/search', async (req, res) => {
   }
 });
 
+// song details
 router.get('/song', async (req, res) => {
   const songPath = req.query.link;
   if (!songPath) return res.status(400).send('Missing song path');
@@ -61,19 +78,11 @@ router.get('/song', async (req, res) => {
     const title = fullTitle.split('של')[0]?.trim() || '';
     const artist = $('a.artistTitle').text().trim();
 
-    res.json({ title, artist, lines });
+    res.json({ title, artist, lines});
   } catch (err) {
     console.error(err);
     res.status(500).send('Failed to fetch song details');
   }
 });
-
-function extractChordsAndSpaces(html) {
-  return html
-    .replace(/<span[^>]*>(.*?)<\/span>/g, '$1')
-    .replace(/<\/?[^>]+>/g, '')
-    .replace(/[\n\r\t]/g, '')
-    .trim();
-}
 
 module.exports = router;

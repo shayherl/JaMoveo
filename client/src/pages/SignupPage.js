@@ -13,7 +13,7 @@ export default function SignupPage(){
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const endpoint = isAdmin ? 'http://localhost:5000/api/admin-signup' : 'http://localhost:5000/api/signup';
+        const endpoint = isAdmin ? `${import.meta.env.VITE_API_BASE_URL}/api/admin-signup` : `${import.meta.env.VITE_API_BASE_URL}/api/signup`;
         try {
             await axios.post(endpoint, formData);
             alert(isAdmin ? 'Admin created' : 'User created')

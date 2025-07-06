@@ -5,7 +5,6 @@
 **JaMoveo** is a real-time rehearsal web app for musicians. The platform allows singers and instrumentalists to sign in, search and display songs (with lyrics and chords), and synchronize their current song view in real-time via Socket.io.
 
 Built as a full-stack project for a Moveo code challenge, the app offers live collaboration tools for jam sessions with clean UI, real-time updates, and accurate chord-lyric alignment.
----
 
 ## Motivation
 
@@ -37,7 +36,7 @@ This project was inspired by Moveo’s internal tradition of team jam sessions. 
 
 ### Sign Up
 - Enter: username, password, and select your role (singer/instrumentalist)
-- 
+
 There are **two separate sign-up URLs**, depending on the type of user:
 - **Regular User:** go to `/signup`
 - **Admin User:** go to `/admin-signup`

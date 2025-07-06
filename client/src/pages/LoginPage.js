@@ -37,10 +37,9 @@ export default function LoginPage(){
             <input className="input" type='password' name='password' placeholder='password' onChange={handleChange} required />
             <br/>
             <button className="btn" type="submit"> Login </button>
-            <p> Don't have an account? 
-                <Link to="/signup">Player sign up</Link>
-                <Link to="/admin-signup">Admin sign up here</Link>
-            </p>
+            <p> Don't have an account? </p>
+            <Link to="/signup">Player sign up</Link>
+            <Link to="/admin-signup">Admin sign up here</Link>
         </form>
     )
 }

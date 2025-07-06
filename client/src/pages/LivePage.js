@@ -53,16 +53,16 @@ export default function LivePage(){
     if (!song) return <h2>Loading...</h2>;
 
     return(
-        <div className="song-container">
+        <div>
             <h2>{song.title} by {song.artist}</h2>
             {song.lines.map((line, i) => {
                 if (!line.lyrics && !line.chords) return null;
                 return (
-                <div key={i} >
-                    {!isSinger && <pre style={{ fontSize: '18px', color: '#5d40ad' }}
+                <div key={i} className="song-line-container">
+                    {!isSinger && <pre className="song-line" style={{color: '#5d40ad' }}
                     dangerouslySetInnerHTML={{ __html: line.chords }}
                     />}
-                    <pre style={{ fontSize: '18px' }}
+                    <pre className="song-line"
                     dangerouslySetInnerHTML={{ __html: line.lyrics }}
                     />
                 </div>

@@ -12,7 +12,7 @@ export default function LoginPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const endpoint = `${import.meta.env.VITE_API_BASE_URL}/api/login`;
+        const endpoint = `${import.meta.env.REACT_APP_API_BASE_URL}/api/login`;
         try {
             const res = await axios.post(endpoint, formData);
             const {token, user} = res.data;

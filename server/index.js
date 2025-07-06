@@ -19,6 +19,7 @@ const tab4uRoutes = require('./routes/Tab4U');
 app.use('/api/tab4u', tab4uRoutes);
 
 // mongoDB connection
+console.log('Loaded MONGO_URI:', process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true

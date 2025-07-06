@@ -39,7 +39,7 @@ export default function LoginPage(){
             <button className="btn" type="submit"> Login </button>
             <p> Don't have an account? </p>
             <Link to="/signup">Player sign up</Link>
-            <Link to="/admin-signup">Admin sign up here</Link>
+            <Link to="/admin-signup">Admin sign up</Link>
         </form>
     )
 }

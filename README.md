@@ -13,6 +13,14 @@ This project was inspired by Moveo’s internal tradition of team jam sessions. 
 
 ---
 
+## Live Demo
+
+[Live App on Netlify](https://jamoveo-shay.netlify.app)
+
+[Server deployed on Railway](https://jamoveo-production-74e5.up.railway.app)
+
+---
+
 ## Features
 
 - **User authentication** – signup & login using JWT + bcrypt for both user and admin
@@ -22,34 +30,6 @@ This project was inspired by Moveo’s internal tradition of team jam sessions. 
 - **Admin control** – chooses the currently visible song
 - **Real-time sync** across all connected clients using Socket.IO
 - **Responsive UI** – mobile-friendly
-
----
-
-## Tech Stack
-
-### Frontend
-- React (with Vite)
-- Tailwind CSS
-- React Router
-- Socket.io-client
-
-### Backend
-- Node.js
-- Express.js
-- Socket.IO Server
-- JWT for authentication
-- bcrypt for password hashing
-
----
-
-## Local Installation
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/shayherl/JaMoveo.git
-cd JaMoveo
-```
 
 ---
 
@@ -73,6 +53,35 @@ There are **two separate sign-up URLs**, depending on the type of user:
 ### Player
 - Wait for the admin to select a song
 - All users’ views are synchronized in real-time
+
+---
+
+## Demo Users
+
+#### Admin - singer
+Username: shay
+Password: 12345
+
+#### Player - guitar
+Username: gal
+Password: 12345
+
+---
+
+## Tech Stack
+
+### Frontend
+- React
+- Tailwind CSS
+- React Router
+- Socket.io-client
+
+### Backend
+- Node.js
+- Express.js
+- Socket.IO Server
+- JWT for authentication
+- bcrypt for password hashing
 
 ---
 
@@ -136,6 +145,9 @@ JaMoveo/
 
 ---
 
-## License
+## Author
 
-MIT © Shay Herling
+Shay Herling  
+shayherl@gmail.com  
+[LinkedIn](https://linkedin.com/in/shayherl) | [GitHub](https://github.com/shayherl)
+

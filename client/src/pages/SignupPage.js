@@ -1,9 +1,10 @@
 import {useState} from "react";
 import axios from 'axios';
-import { useLocation, Link } from 'react-router-dom';
+import { useNavigate,useLocation, Link } from 'react-router-dom';
 
 export default function SignupPage(){
     const location  = useLocation();
+    const navigate = useNavigate();
     const isAdmin = location.pathname === '/admin-signup';
 
     const [formData, setFormData] = useState({username: '', password: '', instrument: ''});
@@ -17,6 +18,7 @@ export default function SignupPage(){
         try {
             await axios.post(endpoint, formData);
             alert(isAdmin ? 'Admin created' : 'User created')
+            navigate('/login');
         }
         catch(err){
             alert(err.response?.data?.msg || 'Error accured during Registration')

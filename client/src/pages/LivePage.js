@@ -53,7 +53,7 @@ export default function LivePage(){
     if (!song) return <h2>Loading...</h2>;
 
     return(
-        <div>
+        <div className="song-container">
             <h2>{song.title} by {song.artist}</h2>
             {song.lines.map((line, i) => {
                 if (!line.lyrics && !line.chords) return null;

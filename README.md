@@ -20,7 +20,7 @@ This project was inspired by Moveo’s internal tradition of team jam sessions. 
 
 ---
 
-## Features
+## Features 
 
 - **User authentication** – signup & login using JWT + bcrypt for both user and admin
 - **Role selection** – singer / instrumentalist
